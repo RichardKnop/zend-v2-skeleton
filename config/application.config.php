@@ -1,8 +1,11 @@
 <?php
+
 return array(
     'modules' => array(
         'Api',
-		'Admin',
+        'Admin',
+        'DoctrineModule',
+        'DoctrineORMModule',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

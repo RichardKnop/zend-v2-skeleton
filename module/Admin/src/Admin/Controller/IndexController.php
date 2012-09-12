@@ -1,24 +1,36 @@
 <?php
 
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
 namespace Admin\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Zend\Mvc\Controller\AbstractActionController,
+    Zend\View\Model\ViewModel,
+    Doctrine\ORM\EntityManager,
+    Admin\Entity\User;
 
 class IndexController extends AbstractActionController
 {
 
-	public function indexAction()
-	{
-		return new ViewModel();
-	}
+    protected $_em;
+
+    public function getEntityManager()
+    {
+        if (null === $this->_em) {
+            $this->_em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        }
+        return $this->_em;
+    }
+
+    public function indexAction()
+    {
+//        $user = new User();
+//        $user->populate(array(
+//            'username' => 'foo_' . time(),
+//            'password' => md5('foo')
+//        ));
+//        $this->getEntityManager()->persist($user);
+//        $this->getEntityManager()->flush();
+
+        return new ViewModel();
+    }
 
 }

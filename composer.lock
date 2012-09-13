@@ -34,8 +34,8 @@
         {
             "package": "doctrine/doctrine-module",
             "version": "dev-master",
-            "source-reference": "73ef20b1b55e501641c9ac8b439f351a4d5cac0f",
-            "commit-date": "1347222192"
+            "source-reference": "9ec205d0549a178c032510893affe3104b056680",
+            "commit-date": "1347504432"
         },
         {
             "package": "doctrine/doctrine-orm-module",
@@ -58,8 +58,8 @@
         {
             "package": "doctrine/orm",
             "version": "dev-master",
-            "source-reference": "dacb51fba2d45127f5006330f1607fe8c516813f",
-            "commit-date": "1347049125"
+            "source-reference": "68f543b8bb7a0ff32be592946fa9ea143de316d7",
+            "commit-date": "1347505953"
         },
         {
             "package": "symfony/console",
@@ -82,8 +82,8 @@
         {
             "package": "zendframework/zendframework",
             "version": "dev-master",
-            "source-reference": "e5167b7be5e7b2a72993c5acb5a8704510a09ab5",
-            "commit-date": "1347311196"
+            "source-reference": "e1c20442194842cdf45a4aea085ba53e8d1cbe5d",
+            "commit-date": "1347531426"
         }
     ],
     "packages-dev": null,

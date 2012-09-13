@@ -13,7 +13,7 @@ class ResourceController extends AbstractRestfulController
 	 * @return array
 	 */
 	public function getList()
-	{		
+	{
 		return array(
 			'a' => 'b',
 			'c' => 'd',

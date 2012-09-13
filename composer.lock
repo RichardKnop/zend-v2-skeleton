@@ -10,14 +10,14 @@
         {
             "package": "doctrine/common",
             "version": "dev-master",
-            "source-reference": "329d90ab8d6ed4c0b422d631caa5594c77c12055",
-            "commit-date": "1345128430"
+            "source-reference": "f7afae04c3f89aaa478c734a4c877448edf0cad5",
+            "commit-date": "1347545216"
         },
         {
             "package": "doctrine/data-fixtures",
             "version": "dev-master",
-            "source-reference": "779c3dfe446b6da893be87b908d6be28345d1e01",
-            "commit-date": "1341780535"
+            "source-reference": "379a5f19e23849cf082613e2e91ed02bd2ee4fb1",
+            "commit-date": "1347551292"
         },
         {
             "package": "doctrine/dbal",
@@ -82,8 +82,8 @@
         {
             "package": "zendframework/zendframework",
             "version": "dev-master",
-            "source-reference": "e1c20442194842cdf45a4aea085ba53e8d1cbe5d",
-            "commit-date": "1347531426"
+            "source-reference": "c5fbf8c220efdf1b6c31b5f311b0d1e2f6dccab9",
+            "commit-date": "1347563782"
         }
     ],
     "packages-dev": null,

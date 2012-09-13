@@ -1,6 +1,12 @@
 {
-    "hash": "149b2965d5dc8ca577b9e1857dda923b",
+    "hash": "17909ffc950576355af7ab25c3d5646a",
     "packages": [
+        {
+            "package": "EHER/PHPUnit",
+            "version": "dev-master",
+            "source-reference": "ee903b6622c061c0b76dc4e764a864c56a86deee",
+            "commit-date": "1345468048"
+        },
         {
             "package": "doctrine/common",
             "version": "dev-master",
@@ -72,6 +78,10 @@
             "version": "dev-master",
             "source-reference": "c8dc6870f1375b43dc8fe0df30bb47abc350076b",
             "commit-date": "1346957130"
+        },
+        {
+            "package": "symfony/finder",
+            "version": "v2.0.16"
         },
         {
             "package": "zendframework/zendframework",

@@ -1,5 +1,7 @@
 <?php
 
+namespace Api;
+
 return array(
 	'errors' => array(
 		'show_exceptions' => array(

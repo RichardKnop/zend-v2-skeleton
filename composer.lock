@@ -92,8 +92,8 @@
         {
             "package": "zendframework/zendframework",
             "version": "dev-master",
-            "source-reference": "c5fbf8c220efdf1b6c31b5f311b0d1e2f6dccab9",
-            "commit-date": "1347563782"
+            "source-reference": "2b394bcbe8fbe9bc528155618902751baec1662f",
+            "commit-date": "1347645456"
         }
     ],
     "packages-dev": null,

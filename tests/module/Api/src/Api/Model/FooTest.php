@@ -1,7 +1,6 @@
 <?php
 
-use Api\Model\Foo,
-	Zend\InputFilter\InputFilterInterface;
+use Api\Model\Foo;
 
 class FooTest extends PHPUnit_Framework_TestCase
 {

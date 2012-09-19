@@ -1,10 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <phpunit bootstrap="./Bootstrap.php" colors="true" backupGlobals="false">
 	<testsuites>
 		<testsuite name="Test Suite">
 			<directory>./</directory>
 		</testsuite>
 	</testsuites>
-    <php>
-        <const name="APPLICATION_ENV" value="test"/>
-    </php>
+	<php>
+		<const name="APPLICATION_ENV" value="test"/>
+	</php>
+	<listeners>
+		<listener file="scripts/TestLimitListener.php" class="TestListener" />
+		<listener file="scripts/TestDbCleanupListener.php" class="TestDbCleanupListener" />
+	</listeners>
 </phpunit>

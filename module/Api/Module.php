@@ -2,7 +2,6 @@
 
 namespace Api;
 
-use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 class Module
@@ -56,6 +55,10 @@ class Module
 	 */
 	public function errorProcess(MvcEvent $e)
 	{
+        if ('production' === APPLICATION_ENV) {
+            exit;
+        }
+        
 		$eventParams = $e->getParams();
 
 		/** @var array $configuration */

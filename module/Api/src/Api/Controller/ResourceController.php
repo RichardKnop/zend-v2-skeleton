@@ -6,6 +6,21 @@ use Zend\Mvc\Controller\AbstractRestfulController;
 
 class ResourceController extends AbstractRestfulController
 {
+    
+    private $_em;
+
+    public function getEntityManager()
+    {
+        if (null === $this->_em) {
+            $this->_em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        }
+        return $this->_em;
+    }
+
+    public function setEntityManager($entityManager)
+    {
+        $this->_em = $entityManager;
+    }
 
 	/**
 	 * Return list of resources

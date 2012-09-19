@@ -4,29 +4,29 @@ use Api\Controller\ResourceController,
 	Zend\Http\Request,
 	Zend\Http\Response,
 	Zend\Mvc\MvcEvent,
-	Zend\Mvc\Router\RouteMatch,
-	Zend\Mvc\Exception\DomainException;
+	Zend\Mvc\Router\RouteMatch;
 
 class ResourceControllerTest extends PHPUnit_Framework_TestCase
 {
 
-	protected $_controller;
-	protected $_request;
-	protected $_response;
-	protected $_routeMatch;
-	protected $_event;
+    private $_controller;
+    private $_request;
+    private $_response;
+    private $_routeMatch;
+    private $_event;
 
-	public function setUp()
-	{
-		$this->_controller = new ResourceController;
-		$this->_request = new Request;
-		$this->_response = new Response;
-		$this->_routeMatch = new RouteMatch(array('controller' => 'resource'));
-		$this->_event = new MvcEvent();
-		$this->_event->setRouteMatch($this->_routeMatch);
-		$this->_controller->setEvent($this->_event);
-		$this->_controller->setServiceLocator(Bootstrap::getServiceManager());
-	}
+    public function setUp()
+    {
+        $this->_controller = new ResourceController;
+        $this->_request = new Request;
+        $this->_response = new Response;
+        $this->_routeMatch = new RouteMatch(array('controller' => 'resource'));
+        $this->_event = new MvcEvent();
+        $this->_event->setRouteMatch($this->_routeMatch);
+        $this->_controller->setEvent($this->_event);
+        $this->_controller->setServiceLocator(Bootstrap::$sm);
+        $this->_controller->setEntityManager(Bootstrap::$em);
+    }
 
 	public function testGetListHttpStatusCode()
 	{

@@ -2,10 +2,10 @@
 
 return array(
 	'modules' => array(
-		'Api',
-		'Admin',
 		'DoctrineModule',
 		'DoctrineORMModule',
+		'Api',
+		'Admin',
 	),
 	'module_listener_options' => array(
 		'config_glob_paths' => array(

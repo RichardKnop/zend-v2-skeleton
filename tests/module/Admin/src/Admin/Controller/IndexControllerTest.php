@@ -19,9 +19,10 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
 	{
 		$this->_controller = new IndexController;
 		$this->_request = new Request;
+		$this->_response = new Response;
+		$this->_event = new MvcEvent();
 		$this->_routeMatch = new RouteMatch(array('controller' => 'index'));
 		$this->_routeMatch->setMatchedRouteName('admin');
-		$this->_event = new MvcEvent();
 		$this->_event->setRouteMatch($this->_routeMatch);
 		$this->_controller->setEvent($this->_event);
 	}

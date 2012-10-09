@@ -1,27 +1,28 @@
 <?php
 
-class TestDbCleanupListener implements PHPUnit_Framework_TestListener
+use Admin\Model\Session\Wrapper as SessionWrapper;
+
+class TestSessionCleanupListener implements PHPUnit_Framework_TestListener
 {
 
 	/**
-	 * called when test is started - starts transaction
+	 * called when test is started
 	 * (non-PHPdoc)
 	 * @see PHPUnit_Framework_TestListener::startTest()
 	 */
 	public function startTest(PHPUnit_Framework_Test $test)
 	{
-		Bootstrap::$em->beginTransaction();
+		
 	}
 
 	/**
-	 * called when test is ended - rolls back the transaction 
+	 * called when test is ended - destroys session
 	 * @param PHUnit_Framework_Test $test
 	 * @param float $length the length of time for the test
 	 */
 	public function endTest(PHPUnit_Framework_Test $test, $length)
 	{
-		Bootstrap::$em->rollback();
-		Bootstrap::$em->clear();
+		SessionWrapper::destroy();
 	}
 
 	/**

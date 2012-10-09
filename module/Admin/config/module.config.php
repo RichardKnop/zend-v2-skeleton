@@ -8,38 +8,26 @@ return array(
 			'admin' => array(
 				'type' => 'Segment',
 				'options' => array(
-					'route' => '/admin/[:controller[/:action]]',
+					'route' => '/admin/[:controller/[:action/]]',
 					'constraints' => array(
 						'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
 						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
 					),
 					'defaults' => array(
 						'__NAMESPACE__' => 'Admin\Controller',
-						'controller' => 'index',
+						'controller' => 'login',
 						'action' => 'index',
 					),
 				),
 			),
 		),
 	),
-	'service_manager' => array(
-		'factories' => array(
-			'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
-		),
-	),
-	'translator' => array(
-		'locale' => 'en_US',
-		'translation_file_patterns' => array(
-			array(
-				'type' => 'gettext',
-				'base_dir' => __DIR__ . '/../language',
-				'pattern' => '%s.mo',
-			),
-		),
-	),
 	'controllers' => array(
 		'invokables' => array(
-			'Admin\Controller\Index' => 'Admin\Controller\IndexController'
+			'Admin\Controller\Index' => 'Admin\Controller\IndexController',
+		),
+		'aliases' => array(
+			'index' => 'Admin\Controller\Index',
 		),
 	),
 	'view_manager' => array(

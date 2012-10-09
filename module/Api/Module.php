@@ -43,9 +43,14 @@ class Module
 			$vars = $e->getResult();
 		}
 
+		$vars = array(
+			'status' => array(
+				'ok' => true,
+			),
+			'body' => $vars,
+		);
 		$content = \Zend\Json\Encoder::encode($vars);
 		$response->setContent($content);
-
 		return $response;
 	}
 
@@ -55,38 +60,45 @@ class Module
 	 */
 	public function errorProcess(MvcEvent $e)
 	{
-        if ('production' === APPLICATION_ENV) {
-            exit;
-        }
-        
 		$eventParams = $e->getParams();
 
 		/** @var array $configuration */
 		$configuration = $e->getApplication()->getConfig();
 
+		$response = $e->getResponse();
+
 		$vars = array();
 		if (isset($eventParams['exception'])) {
 			/** @var \Exception $exception */
 			$exception = $eventParams['exception'];
+			if ($exception->getCode()) {
+				$response->setStatusCode($exception->getCode());
+			}
 
 			if ($configuration['errors']['show_exceptions']['message']) {
-				$vars['error-message'] = $exception->getMessage();
+				$vars['errorMessage'] = $exception->getMessage();
 			}
 			if ($configuration['errors']['show_exceptions']['trace']) {
-				$vars['error-trace'] = $exception->getTrace();
+				$vars['errorTrace'] = $exception->getTrace();
 			}
 		}
 
 		if (empty($vars)) {
-			$vars['error'] = 'Something went wrong';
+			$vars['errorMessage'] = 'Something went wrong';
 		}
-
-		$response = $e->getResponse();
 
 		$headers = $response->getHeaders();
 		$headers->addHeaderLine('Content-Type', 'application/json');
 		$response->setHeaders($headers);
 
+		$vars = array(
+			'status' => array(
+				'ok' => false,
+			),
+			'body' => array(
+				'errorMessage' => $vars['errorMessage']
+			),
+		);
 		$content = \Zend\Json\Encoder::encode($vars);
 		$response->setContent($content);
 
@@ -103,10 +115,8 @@ class Module
 	public function getAutoloaderConfig()
 	{
 		return array(
-			'Zend\Loader\StandardAutoloader' => array(
-				'namespaces' => array(
-					__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-				),
+			'Zend\Loader\ClassMapAutoloader' => array(
+				__DIR__ . '/autoload_classmap.php',
 			),
 		);
 	}

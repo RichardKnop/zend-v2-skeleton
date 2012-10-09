@@ -6,42 +6,30 @@ use Zend\Mvc\Controller\AbstractRestfulController;
 
 class ResourceController extends AbstractRestfulController
 {
-    
-    private $_em;
 
-    public function getEntityManager()
-    {
-        if (null === $this->_em) {
-            $this->_em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-        }
-        return $this->_em;
-    }
+	private $_em;
 
-    public function setEntityManager($entityManager)
-    {
-        $this->_em = $entityManager;
-    }
+	public function getEntityManager()
+	{
+		if (null === $this->_em) {
+			$this->_em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+		}
+		return $this->_em;
+	}
 
-	/**
-	 * Return list of resources
-	 *
-	 * @return array
-	 */
+	public function setEntityManager($entityManager)
+	{
+		$this->_em = $entityManager;
+	}
+
 	public function getList()
 	{
 		return array(
-			'a' => 'b',
-			'c' => 'd',
-			'e' => 'f',
+			'foo',
+			'bar',
 		);
 	}
 
-	/**
-	 * Return single resource
-	 *
-	 * @param mixed $id
-	 * @return mixed
-	 */
 	public function get($id)
 	{
 		return array(
@@ -49,26 +37,14 @@ class ResourceController extends AbstractRestfulController
 		);
 	}
 
-	/**
-	 * Create a new resource
-	 *
-	 * @param mixed $data
-	 * @return mixed
-	 */
 	public function create($data)
 	{
+		$this->getResponse()->setStatusCode(201);
 		return array(
 			'created',
 		);
 	}
 
-	/**
-	 * Update an existing resource
-	 *
-	 * @param mixed $id
-	 * @param mixed $data
-	 * @return mixed
-	 */
 	public function update($id, $data)
 	{
 		return array(
@@ -76,12 +52,6 @@ class ResourceController extends AbstractRestfulController
 		);
 	}
 
-	/**
-	 * Delete an existing resource
-	 *
-	 * @param mixed $id
-	 * @return mixed
-	 */
 	public function delete($id)
 	{
 		return array(

@@ -11,6 +11,24 @@
  * credentials from accidentally being comitted into version control.
  */
 
+defined('APPLICATION_ENV')
+		|| define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
+
+$dbname = 'test' === APPLICATION_ENV ? 'dbname_test' : 'dbname';
+
 return array(
-    // ...
+	'doctrine' => array(
+		'connection' => array(
+			'orm_default' => array(
+				'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+				'params' => array(
+					'host' => 'localhost',
+					'port' => '3306',
+					'user' => 'root',
+					'password' => 'root',
+					'dbname' => $dbname,
+				),
+			),
+		),
+	),
 );

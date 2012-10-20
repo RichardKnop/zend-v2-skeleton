@@ -6,5 +6,7 @@ nbproject
 .idea
 .project
 .settings
-composer.lock
-vendor/
+cache.properties
+build
+data/DoctrineORMModule/Proxy/
+vendor

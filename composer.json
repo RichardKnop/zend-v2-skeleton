@@ -1,5 +1,5 @@
 {
-	"name": "sdp-store",
+	"name": "zend-v2-skeleton",
 	"description": "Zend V2 Skeleton",
 	"minimum-stability": "dev",
 	"require": {
@@ -25,7 +25,8 @@
 		"symfony/css-selector": "2.1.*",
 		"symfony/dom-crawler": "2.1.*",
 		"symfony/process": "2.1.*",
-		"guzzle/http": "2.8.*"
+		"guzzle/http": "2.8.*",
+		"behat/mink-sahi-driver": "*"
 	},
 	"autoload": {
 		"psr-0": {

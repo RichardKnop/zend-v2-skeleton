@@ -3,7 +3,11 @@
 return array(
     'Admin\Module'                         => __DIR__ . '/Module.php',
     'Admin\Controller\IndexController'     => __DIR__ . '/src/Admin/Controller/IndexController.php',
+    'Admin\Controller\LoginController'     => __DIR__ . '/src/Admin/Controller/LoginController.php',
     'Admin\Entity\AdminSession'            => __DIR__ . '/src/Admin/Entity/AdminSession.php',
+    'Admin\Entity\AdminUser'               => __DIR__ . '/src/Admin/Entity/AdminUser.php',
+    'Admin\Form\LoginForm'                 => __DIR__ . '/src/Admin/Form/LoginForm.php',
+    'Admin\Model\AbstractController'       => __DIR__ . '/src/Admin/Model/AbstractController.php',
     'Admin\Model\Session\Handler'          => __DIR__ . '/src/Admin/Model/Session/Handler.php',
     'Admin\Model\Session\Wrapper\ISession' => __DIR__ . '/src/Admin/Model/Session/Wrapper/ISession.php',
     'Admin\Model\Session\Wrapper'          => __DIR__ . '/src/Admin/Model/Session/Wrapper.php',

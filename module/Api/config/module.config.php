@@ -12,7 +12,7 @@ return array(
 	'router' => array(
 		'routes' => array(
 			'default' => array(
-				'type' => 'Zend\Mvc\Router\Http\Segment',
+				'type' => 'segment',
 				'options' => array(
 					'route' => '/api/v1/:controller/[:id/]',
 					'constraints' => array(

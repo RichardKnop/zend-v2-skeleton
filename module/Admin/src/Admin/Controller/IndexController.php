@@ -2,21 +2,11 @@
 
 namespace Admin\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController,
+use Admin\Model\AbstractController,
 	Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController
+class IndexController extends AbstractController
 {
-
-	protected $_em;
-
-	public function getEntityManager()
-	{
-		if (null === $this->_em) {
-			$this->_em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-		}
-		return $this->_em;
-	}
 
 	public function indexAction()
 	{

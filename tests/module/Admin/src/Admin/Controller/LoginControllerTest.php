@@ -1,12 +1,12 @@
 <?php
 
-use Admin\Controller\IndexController,
+use Admin\Controller\LoginController,
 	Zend\Http\Request,
 	Zend\Http\Response,
 	Zend\Mvc\MvcEvent,
 	Zend\Mvc\Router\RouteMatch;
 
-class IndexControllerTest extends PHPUnit_Framework_TestCase
+class LoginControllerTest extends PHPUnit_Framework_TestCase
 {
 
 	protected $_controller;
@@ -17,11 +17,11 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		$this->_controller = new IndexController;
+		$this->_controller = new LoginController;
 		$this->_request = new Request;
 		$this->_response = new Response;
 		$this->_event = new MvcEvent();
-		$this->_routeMatch = new RouteMatch(array('controller' => 'index'));
+		$this->_routeMatch = new RouteMatch(array('controller' => 'login'));
 		$this->_routeMatch->setMatchedRouteName('admin');
 		$this->_event->setRouteMatch($this->_routeMatch);
 		$this->_controller->setEvent($this->_event);

@@ -1,15 +1,44 @@
 {
+<<<<<<< HEAD
     "name": "zend-v2-skeleton",
     "description": "Zend V2 Skeleton",
+=======
+	"name": "sdp-store",
+	"description": "Zend V2 Skeleton",
+>>>>>>> added lots of new stuff, Behat integration, improved bootstrapping, other refactoring, more to come
 	"minimum-stability": "dev",
 	"require": {
 		"php": ">=5.4",
+		"symfony/console": ">=2.0.0,<2.2.0-dev",
+		"symfony/config": ">=2.0.0,<2.2.0-dev",
+		"symfony/dependency-injection": ">=2.0.0,<2.2.0-dev",
+		"symfony/event-dispatcher": ">=2.0.0,<2.2.0-dev",
+		"symfony/translation": ">=2.0.0,<2.2.0-dev",
+		"symfony/yaml": ">=2.0.0,<2.2.0-dev",
+		"symfony/finder": ">=2.0.0,<2.2.0-dev",
 		"zendframework/zendframework": "2.*",
 		"doctrine/doctrine-module": "dev-master",
 		"doctrine/doctrine-orm-module": "0.*",
 		"gedmo/doctrine-extensions": "dev-master"
 	},
 	"require-dev": {
+<<<<<<< HEAD
 		"phpunit/phpunit": "3.7.*"
+=======
+		"phpunit/phpunit": "3.7.*",
+		"behat/behat": "2.4.*@stable",
+		"behat/mink": "1.4@stable",
+		"behat/mink-goutte-driver": "*",
+		"symfony/browser-kit": "2.1.*",
+		"symfony/css-selector": "2.1.*",
+		"symfony/dom-crawler": "2.1.*",
+		"symfony/process": "2.1.*",
+		"guzzle/http": "2.8.*"
+	},
+	"autoload": {
+		"psr-0": {
+			"Behat\\Behat": "src/"
+		}
+>>>>>>> added lots of new stuff, Behat integration, improved bootstrapping, other refactoring, more to come
 	}
 }

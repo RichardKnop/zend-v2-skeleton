@@ -1,0 +1,19 @@
+<div class="hero-unit">
+    <h1>Login</h1>
+
+	<?php if (null !== $this->error): ?>
+		<p><?php echo $this->escapeHtml($this->error); ?></p>
+	<?php endif; ?>
+
+	<?php
+	$form = $this->form;
+	$form->setAttribute('action', $this->url('admin', array('controller' => 'login', 'action' => 'index')));
+	$form->prepare();
+
+	echo $this->form()->openTag($form);
+	echo $this->formRow($form->get('email'));
+	echo $this->formRow($form->get('password'));
+	echo $this->formSubmit($form->get('login'));
+	echo $this->form()->closeTag();
+	?>
+</div>

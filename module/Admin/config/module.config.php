@@ -49,6 +49,20 @@ return array(
 			__DIR__ . '/../view',
 		),
 	),
+	'navigation' => array(
+		'default' => array(
+			array(
+				'label' => 'Home',
+				'controller' => 'index',
+				'action' => 'index',
+			),
+			array(
+				'label' => 'Log out',
+				'controller' => 'login',
+				'action' => 'logout',
+			),
+		)
+	),
 	'doctrine' => array(
 		'driver' => array(
 			__NAMESPACE__ . '_driver' => array(

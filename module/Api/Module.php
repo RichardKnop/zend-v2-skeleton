@@ -7,24 +7,14 @@ use Zend\Mvc\MvcEvent;
 class Module
 {
 
-	/**
-	 * @param MvcEvent $e
-	 */
 	public function onBootstrap($e)
 	{
-		/** @var \Zend\ModuleManager\ModuleManager $moduleManager */
 		$moduleManager = $e->getApplication()->getServiceManager()->get('modulemanager');
-		/** @var \Zend\EventManager\SharedEventManager $sharedEvents */
 		$sharedEvents = $moduleManager->getEventManager()->getSharedManager();
-
 		$sharedEvents->attach('Zend\Mvc\Controller\AbstractRestfulController', MvcEvent::EVENT_DISPATCH, array($this, 'postProcess'), -100);
 		$sharedEvents->attach('Zend\Mvc\Application', MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'errorProcess'), 999);
 	}
 
-	/**
-	 * @param MvcEvent $e
-	 * @return null|\Zend\Http\PhpEnvironment\Response
-	 */
 	public function postProcess(MvcEvent $e)
 	{
 		$response = $e->getResponse();
@@ -54,51 +44,16 @@ class Module
 		return $response;
 	}
 
-	/**
-	 * @param MvcEvent $e
-	 * @return null|\Zend\Http\PhpEnvironment\Response
-	 */
 	public function errorProcess(MvcEvent $e)
 	{
-		$eventParams = $e->getParams();
-
-		/** @var array $configuration */
-		$configuration = $e->getApplication()->getConfig();
-
 		$response = $e->getResponse();
-
-		$vars = array();
-		if (isset($eventParams['exception'])) {
-			/** @var \Exception $exception */
-			$exception = $eventParams['exception'];
-			if ($exception->getCode()) {
-				$response->setStatusCode($exception->getCode());
-			}
-
-			if ($configuration['errors']['show_exceptions']['message']) {
-				$vars['errorMessage'] = $exception->getMessage();
-			}
-			if ($configuration['errors']['show_exceptions']['trace']) {
-				$vars['errorTrace'] = $exception->getTrace();
-			}
-		}
-
-		if (empty($vars)) {
-			$vars['errorMessage'] = 'Something went wrong';
-		}
+		$status = $this->_getErrorStatus($e);
 
 		$headers = $response->getHeaders();
 		$headers->addHeaderLine('Content-Type', 'application/json');
 		$response->setHeaders($headers);
 
-		$vars = array(
-			'status' => array(
-				'ok' => false,
-			),
-			'body' => array(
-				'errorMessage' => $vars['errorMessage']
-			),
-		);
+		$vars = ['status' => $status, 'body' => ''];
 		$content = \Zend\Json\Encoder::encode($vars);
 		$response->setContent($content);
 
@@ -119,6 +74,45 @@ class Module
 				__DIR__ . '/autoload_classmap.php',
 			),
 		);
+	}
+
+	private function _getErrorStatus(MvcEvent $e)
+	{
+		$eventParams = $e->getParams();
+		$response = $e->getResponse();
+		$status = ['ok' => false];
+		$translator = $this->_getTranslator($e);
+		if (isset($eventParams['exception'])) {
+			$exception = $eventParams['exception'];
+			if (!($exception instanceof \Api\Model\Exception)) {
+				$exception = new \Api\Model\Exception($exception->getMessage(), 500);
+			}
+			if ($exception->getCode()) {
+//				$response->setStatusCode($exception->getCode());
+				$response->setStatusCode(200);
+				$status['code'] = $exception->getCode();
+			}
+			$errorMessage = $exception->getMessage();
+			$status['usrMsg'] = $translator->translate($errorMessage);
+			$status['debugMsg'] = strlen($exception->getDebugMessage()) > 0 ? $exception->getDebugMessage() : null; //Doing this so we don't return empty strings, don't return the property at all
+			$status['redirectURL'] = strlen($exception->getRedirectURL()) > 0 ? $exception->getRedirectURL() : null;
+			$status['redirectURLLaunchBrowser'] = $exception->getRedirectURLLaunchBrowser();
+			$status['internalCode'] = $exception->getInternalErrorCode();
+		} else {
+			$status['usrMsg'] = $translator->translate('An application error has occurred');
+		}
+		return $status;
+	}
+
+	private function _getTranslator(MvcEvent $e)
+	{
+		$translator = $e->getApplication()->getServiceManager()->get('translate');
+		$translator->addTranslationFilePattern('phparray', __DIR__ . '/language/', '%s.php');
+		$acceptLanguage = $e->getRequest()->getHeader('AcceptLanguage');
+		if ($acceptLanguage) {
+			$translator->setLocale(\Locale::acceptFromHttp($acceptLanguage->getFieldValue()));
+		}
+		return $translator;
 	}
 
 }

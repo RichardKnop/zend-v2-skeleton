@@ -35,10 +35,7 @@
 					</a>
 					<a class="brand" href="/admin/">Storefront Administration</a>
 					<div class="nav-collapse">
-						<ul class="nav">
-							<li class="active"><a href="/admin/">Home</a></li>
-							<li><a href="/admin/login/logout/">Log out</a></li>
-						</ul>
+						<?php echo $this->navigation('Navigation')->menu()->setUlClass('nav nav-pills'); ?>
 					</div><!--/.nav-collapse -->
 				</div>
 			</div>

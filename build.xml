@@ -159,7 +159,7 @@
 
 	<target name="behat">
 		<delete dir="${basedir}/build/behat" />
-		<mkdir dir="${basedir}/build/behat"/>
+		<mkdir dir="${basedir}/build/behat" />
 		<exec dir="${basedir}/tests/functional" executable="${basedir}/vendor/bin/behat" failonerror="true">
 			<arg line="-c ${basedir}/vendor/behat.yml"/>
 			<arg line="-f junit --out ${basedir}/build/behat"/>
